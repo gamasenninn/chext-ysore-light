@@ -1,2 +1,3 @@
 # chext-ystore
-CHROME extension for Yahoo! Store Creators Pro.. Insert images and WATCH data for items in the listings that have been closed for sale.
+CHROME extension for Yahoo! Store Creators Pro.. 
+appendding <Image> data when listing any data that have been closed for sale.

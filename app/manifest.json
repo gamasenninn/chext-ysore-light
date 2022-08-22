@@ -1,0 +1,18 @@
+{
+    "name": "YstorePro extention",
+    "version": "1.0.8",
+    "manifest_version": 3,
+    "host_permissions": [
+      "https://hikousen-rs.com/*"
+    ],
+    "description": "Yahoo store creator pro. extention.",
+    "content_scripts": [{
+      "matches": 
+          [
+            "https://auctions.store.yahoo.co.jp/*"
+          ],
+      "js": [
+        "jquery.min.js","config.js","addinfo.js"
+      ]
+    }]
+  }

@@ -1,0 +1,15 @@
+{
+    "name": "test",
+    "version": "1.0.4",
+    "manifest_version": 3,
+    "host_permissions": [
+      "https://hikousen-rs.com/"
+    ],
+    "description": "test Chrome Extension",
+    "content_scripts": [{
+      "matches": ["https://auctions.store.yahoo.co.jp/serinavi/closed-list*"],
+      "js": [
+        "jquery.min.js","jquery.csv.min.js","addinfo.js"
+      ]
+    }]
+  }

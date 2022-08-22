@@ -1,0 +1,5 @@
+const conf={
+    imageUrl : "<Your Image file URL>",
+    codeInfoUrl :"<Your infomation Web site URL accesssing by code>",
+    codeInfoApiUrl :"<API URL for accessing by code>"
+}

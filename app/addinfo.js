@@ -11,8 +11,10 @@ $(function () {
     $('#cusBtnList').click(function () {
         $('ul').filter('.sc-cJSrbW').each(async function (i, elUl) {
             let scode = $(elUl).find('li').eq(1).find('.sc-iELTvK').text().replace('管理番号', '').trim();
-            //let aucId = $(elUl).find('li').eq(1).find('.sc-feJyhm').text().replace('オークションID', '').trim();
+            let aucId = $(elUl).find('li').eq(1).find('.sc-feJyhm').text().replace('オークションID', '').trim();
+            console.log('scode/aucId:' ,scode,aucId);
             $(elUl).find('li').eq(7).remove();
+            getImageUrl(aucId);
             if (i != 0){
                 $(elUl).append(
                     `<li><img src='${conf.imageUrl}/${scode}.jpg' width=120>
@@ -24,11 +26,11 @@ $(function () {
                 const response = await fetch(`${conf.codeInfoApiUrl}?scode=${scode}`);
                 const data = await response.json();   
                 //console.log(data,addWatch,addPv); 
-                $(elUl).find('li').eq(3).find('div').html(`${data.watch}`);
-                $(elUl).find('li').eq(4).find('div').html(`${data.lastPv}<br/>(T:${data.totalPv})`);     
+                //$(elUl).find('li').eq(3).find('div').html(`${data.watch}`);
+                //$(elUl).find('li').eq(4).find('div').html(`${data.lastPv}<br/>(T:${data.totalPv})`);     
             }else{
-                $(elUl).append("<li></li>");
-                $(elUl).find('li').eq(3).find('div').text("ウォッチ"); 
+                //$(elUl).append("<li></li>");
+                //$(elUl).find('li').eq(3).find('div').text("ウォッチ"); 
             }         
         });
     });
@@ -52,3 +54,11 @@ $(function () {
     });
 
 });
+
+async function getImageUrl(aucId){
+    const aucUrl = "https://page.auctions.yahoo.co.jp/jp/auction/";
+    const response = await fetch(`${aucUrl}/${aucId}`);
+    const data = await response.json();   
+    console.log('data:',data);
+}
+

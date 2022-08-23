@@ -14,7 +14,7 @@ $(function () {
             let aucId = $(elUl).find('li').eq(1).find('.sc-feJyhm').text().replace('オークションID', '').trim();
             console.log('scode/aucId:' ,scode,aucId);
             $(elUl).find('li').eq(7).remove();
-            getImageUrl(aucId);
+            getImageUrl(scode);
             if (i != 0){
                 $(elUl).append(
                     `<li><img src='${conf.imageUrl}/${scode}.jpg' width=120>
@@ -55,10 +55,17 @@ $(function () {
 
 });
 
-async function getImageUrl(aucId){
-    const aucUrl = "https://page.auctions.yahoo.co.jp/jp/auction/";
-    const response = await fetch(`${aucUrl}/${aucId}`);
-    const data = await response.json();   
-    console.log('data:',data);
+async function getImageUrl(scode){
+    const aucUrl = "https://auctions.store.yahoo.co.jp/snavi/items?select=business_commodity_ids&q=";
+    //const response = await fetch(`${aucUrl}${scode}`);
+    //const data = await response.text();   
+    const response = await fetch(`${aucUrl}${scode}`)
+    .then(response => response.text())
+    .then(data =>{
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data, "text/html");
+        const imageFiles = doc.getElementsByClassName('js-lazyloader-item'); 
+        console.log('imageFile:',imageFiles[0].getAttribute('data-lazyloader-src'));
+    })
 }
 
